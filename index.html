@@ -2496,7 +2496,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             </span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400 mt-0.5">
-            Rankings from the students registered in this class. Scores are practice indicators, not verified examination results.
+            Class members only. Tap a nickname to view their achievements. Practice scores are self-reported, not verified examination results.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2.5 shrink-0">
@@ -2522,7 +2522,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
               <span id="lb-account-handle-pill" class="text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-white/10 text-slate-300">Not Linked</span>
             </div>
             <p id="lb-account-status-desc" class="text-xs text-slate-400 mt-0.5">
-              Create or sign in to a Scholar Handle &amp; PIN so you can load your progress on any iPad, laptop, or browser.
+              Create or sign in to a Scholar Handle &amp; password so you can load your progress on any iPad, laptop, or browser.
             </p>
           </div>
         </div>
@@ -2544,7 +2544,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
                 <th class="py-3.5 px-4">Rank</th>
                 <th class="py-3.5 px-4">Scholar</th>
                 <th class="py-3.5 px-4">Division &amp; Tier</th>
-                <th class="py-3.5 px-4">Accuracy</th>
+                <th class="py-3.5 px-4">Companion</th>
                 <th class="py-3.5 px-4 text-right">Arena Score</th>
               </tr>
             </thead>
@@ -2611,7 +2611,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           <span id="profile-cloud-badge" class="text-[11px] font-mono-code font-bold text-slate-300">Guest Session</span>
         </div>
         <p id="profile-cloud-sub" class="text-xs text-slate-400">
-          Log in with a Scholar Handle &amp; PIN to back up your tiers, coins, and Armory unlocks across devices.
+          Log in with a Scholar Handle &amp; password to back up your tiers, coins, and Armory unlocks across devices.
         </p>
         <div class="flex flex-wrap gap-2 pt-0.5">
           <button onclick="exportSave()" class="flex-1 py-2 px-3 rounded-lg skin-btn-primary text-xs font-extrabold">
@@ -2662,8 +2662,11 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     </div>
   </div>
 
-<div id="account-overlay" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 overflow-y-auto"><div class="skin-card rounded-2xl p-6 w-full max-w-md space-y-4"><h2 class="text-xl font-black">Scholar account</h2><p class="text-xs text-slate-400">Your progress follows you across devices. Use a class nickname, not your full name.</p><div id="account-login"><form id="account-form" onsubmit="submitAccount(event)" class="space-y-3" data-mode="login"><label class="block text-sm font-bold">Handle<input id="account-handle" autocomplete="username" required maxlength="24" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><label class="block text-sm font-bold">Password<input id="account-password" type="password" autocomplete="current-password" required maxlength="128" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><div id="register-fields" class="hidden space-y-3"><label class="block text-sm font-bold">Nickname<input id="account-name" maxlength="20" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><label class="block text-sm font-bold">Class enrolment code<input id="account-code" type="password" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label></div><button id="account-submit" class="skin-btn-primary rounded-xl w-full p-3">Sign in</button><button id="account-mode" type="button" class="text-sm skin-accent-text" onclick="setAccountMode(el('account-form').dataset.mode!=='register')">New scholar? Create account</button></form></div><div id="account-signed" class="hidden space-y-3"><p id="account-who" class="font-bold"></p><p id="account-status" class="text-xs text-slate-400"></p><button class="skin-btn-primary rounded-xl w-full p-3" onclick="syncProgressToCloud()">Sync progress</button><button class="skin-card-alt rounded-xl w-full p-3" onclick="openAccountProfile()">Change nickname</button><button class="skin-card-alt rounded-xl w-full p-3" onclick="signOut()">Sign out</button></div><p id="account-error" class="text-sm text-rose-300" role="alert"></p><button id="account-close" class="hidden text-sm skin-accent-text" onclick="closeAccount()">Back to game</button></div></div>
+<div id="account-overlay" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 overflow-y-auto"><div class="skin-card rounded-2xl p-6 w-full max-w-md space-y-4"><h2 class="text-xl font-black">Scholar account</h2><p class="text-xs text-slate-400">Your progress follows you across devices. Choose a private handle and a class nickname, not your full name. Do not reuse your school password. Sign out on shared iPads.</p><div id="account-login"><form id="account-form" onsubmit="submitAccount(event)" class="space-y-3" data-mode="login"><label class="block text-sm font-bold">Handle<input id="account-handle" autocomplete="username" required maxlength="24" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><label class="block text-sm font-bold">Password<input id="account-password" type="password" autocomplete="current-password" required maxlength="128" minlength="8" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><div id="register-fields" class="hidden space-y-3"><label class="block text-sm font-bold">Nickname<input id="account-name" maxlength="20" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><label class="block text-sm font-bold">Class enrolment code<input id="account-code" autocomplete="off" type="password" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label></div><button id="account-submit" class="skin-btn-primary rounded-xl w-full p-3">Sign in</button><button id="account-mode" type="button" class="text-sm skin-accent-text" onclick="setAccountMode(el('account-form').dataset.mode!=='register')">New scholar? Create account</button></form><div class="border-t border-white/15 mt-4 pt-4"><button type="button" id="google-signin" onclick="submitGoogle()" class="skin-card-alt rounded-xl w-full p-3 font-bold">Sign in with Google</button></div></div><div id="google-enrolment" class="hidden space-y-3"><p class="text-sm text-slate-300">Choose a nickname for your public game profile. Your Google name and email will not be displayed.</p><form onsubmit="submitGoogleEnrolment(event)" class="space-y-3"><label class="block text-sm font-bold">Class nickname<input id="google-nickname" required maxlength="20" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><label class="block text-sm font-bold">Class enrolment code<input id="google-code" required minlength="8" autocomplete="off" type="password" class="block w-full rounded-lg bg-black/50 border border-white/20 p-3" /></label><button id="google-enrol-submit" class="skin-btn-primary rounded-xl w-full p-3">Join class</button><button type="button" id="google-cancel" onclick="cancelGoogleEnrolment()" class="text-sm skin-accent-text">Cancel and sign out</button></form></div><div id="account-signed" class="hidden space-y-3"><p id="account-who" class="font-bold"></p><p id="account-status" class="text-xs text-slate-400"></p><button class="skin-btn-primary rounded-xl w-full p-3" onclick="syncProgressToCloud()">Sync progress</button><button class="skin-card-alt rounded-xl w-full p-3" onclick="openAccountProfile()">Change nickname</button><button class="skin-card-alt rounded-xl w-full p-3" onclick="signOut()">Sign out</button></div><p id="account-error" class="text-sm text-rose-300" role="alert"></p><button id="account-close" class="hidden text-sm skin-accent-text" onclick="closeAccount()">Back to game</button></div></div>
 <div id="placement-modal" class="hidden fixed inset-0 z-50 bg-black/90 p-4 overflow-y-auto flex items-center justify-center"><div class="skin-card w-full max-w-xl rounded-2xl p-5 space-y-4"><h2 id="placement-title" class="text-xl font-black">Placement</h2><p id="placement-progress" class="text-sm skin-accent-text"></p><p class="text-xs text-slate-400">Ten questions per block. Pass with at least eight correct and at least one correct in every topic. No hints or feedback during the test. You may stop and keep the highest completed pass.</p><p id="placement-question" class="text-lg font-semibold"></p><div id="placement-graph" class="max-w-sm mx-auto"></div><form onsubmit="submitPlacement(event)" class="space-y-3"><label class="block text-xs font-bold">Answer <span id="placement-unit"></span><input id="placement-answer" class="block w-full bg-black/40 border border-white/20 rounded-xl p-3 mt-1" autocomplete="off" spellcheck="false" /></label><p id="placement-error" role="alert" class="text-xs text-rose-300"></p><button class="skin-btn-primary rounded-xl w-full p-3">Submit</button></form><button class="skin-card-alt rounded-xl w-full p-2 text-sm" onclick="skipPlacementQuestion()">I do not know</button><button class="text-xs text-slate-400" onclick="stopPlacement()">End diagnostic and start playing</button></div></div><div id="cloud-warning" class="fixed bottom-2 left-2 z-40 max-w-md"><div id="cloud-error" class="hidden skin-card rounded-lg p-3 text-sm text-amber-300"></div><button id="reload-cloud" class="hidden skin-btn-primary p-2 rounded-lg" onclick="reloadCloud()">Reload cloud save</button></div>
+<div id="peer-profile-modal" class="hidden fixed inset-0 z-50 bg-black/85 p-4 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="peer-name"><div class="skin-card w-full max-w-lg rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-auto"><div class="flex items-center justify-between"><h2 class="text-lg font-black">Scholar profile</h2><button id="peer-close" class="skin-card-alt px-3 py-2 rounded-lg text-sm" onclick="closePeerProfile()">Close</button></div><div class="flex gap-4 items-center"><div id="peer-avatar" class="w-20 h-20 shrink-0"></div><div><h3 id="peer-name" class="text-xl font-black"></h3><p id="peer-rank" class="skin-accent-text font-bold"></p><p id="peer-score" class="text-sm text-slate-400"></p></div></div><div class="grid grid-cols-2 gap-3"><div class="skin-card-alt rounded-xl p-3 text-center"><div class="text-xs text-slate-400">Current emblem</div><div id="peer-emblem" class="w-24 h-24 mx-auto"></div><p id="peer-earned" class="text-xs"></p></div><div class="skin-card-alt rounded-xl p-3 text-center"><div class="text-xs text-slate-400">Equipped companion</div><div id="peer-pet" class="w-24 h-24 mx-auto"></div><p id="peer-pet-name" class="text-xs"></p></div></div><div><h4 class="font-bold text-sm mb-2">Division emblems</h4><div id="peer-vault" class="grid grid-cols-5 gap-2"></div></div><p class="text-xs text-slate-400">Only achievements are shared. Detailed learning records are private to the scholar and authorised teacher.</p></div></div>
+  <script src="firebase-config.js"></script>
+  <script src="firebase-account.js"></script>
   <script>
     // =========================================================================
     // 1. RANKED DIVISIONS, WEBSITE SKINS, COMPANIONS & CREST AVATARS
@@ -4647,7 +4650,7 @@ const reasoningBanks={
       $('tab-teacher').classList.toggle('hidden',account?.role!=='teacher');
       if(account?.role==='teacher')for(const id of ['tab-arena','tab-vault','tab-store','tab-mastery'])$(id).classList.add('hidden');
       if (tabName === 'mastery') renderMastery();
- if(tabName==='teacher')renderTeacher(); if(tabName==='leaderboard')refreshLeaderboard();
+ if(tabName==='teacher')renderTeacher(); if(tabName==='leaderboard')refreshLeaderboard(); else ArenaCloud.stop();
       if (tabName === 'vault') renderEmblemVault();
       if (tabName === 'store') renderStore();
       if (tabName === 'leaderboard') renderLeaderboard();
@@ -4772,18 +4775,7 @@ const reasoningBanks={
     function renderLeaderboard() {
       document.getElementById('leaderboard-your-score').textContent = state.totalScore.toLocaleString();
       updateProgressionUI();
-      const userAcc = state.totalAttempts > 0 ? Math.round((state.totalSolved / state.totalAttempts) * 100) : 0;
       const myEntryId = account?.handle ? `acct_${account.handle}` : (activeCloudUid ? `uid_${activeCloudUid}` : 'local_user');
-
-      // House benchmark scholars so the arena always has competitive milestones alongside live players
-      const benchmarkScholars = [
-        { entryId: 'bench_1', name: 'Aurelia Vance',   handle: 'aurelia_v', tier: 48, acc: 97, score: 148500, avatar: 'architect', isBenchmark: true },
-        { entryId: 'bench_2', name: 'Kenji Takahashi', handle: 'kenji_t',   tier: 42, acc: 95, score: 112400, avatar: 'ronin',     isBenchmark: true },
-        { entryId: 'bench_3', name: 'Sora Lindqvist',  handle: 'sora_l',    tier: 35, acc: 94, score: 84200,  avatar: 'valkyrie',  isBenchmark: true },
-        { entryId: 'bench_4', name: 'Mateo Alvarez',   handle: 'mateo_a',   tier: 27, acc: 91, score: 51900,  avatar: 'paladin',   isBenchmark: true },
-        { entryId: 'bench_5', name: 'Priya Nair',      handle: 'priya_n',   tier: 19, acc: 93, score: 28600,  avatar: 'alchemist', isBenchmark: true },
-        { entryId: 'bench_6', name: 'Lucas Meyer',     handle: 'lucas_m',   tier: 11, acc: 88, score: 11400,  avatar: 'visor',     isBenchmark: true }
-      ];
 
       // Merge live cloud entries with current player's latest live state
       const mergedMap = new Map();
@@ -4805,7 +4797,7 @@ const reasoningBanks={
         name: state.playerName,
         tier: state.peakTier,
         placementTier:state.placementTier,
-        acc:state.totalAttempts?userAcc:null,
+        completed:state.completed, pet:state.equippedPet,
         score: state.totalScore,
         avatar: state.equippedAvatar,
         isVerifiedAccount: Boolean(state.accountHandle),
@@ -4815,6 +4807,7 @@ const reasoningBanks={
       const allRows = Array.from(mergedMap.values());
       allRows.sort((a, b) => (b.tier || 1) - (a.tier || 1) || (b.score || 0) - (a.score || 0));
 
+      peerRows=allRows;
       document.getElementById('leaderboard-tbody').innerHTML = allRows.map((r, i) => {
         const rk = getRankForTier(r.tier || 1);
         const handleTag = r.handle ? `<span class="text-[11px] font-mono-code text-slate-400 ml-1">@${escapeHTML(r.handle)}</span>` : '';
@@ -4831,10 +4824,10 @@ const reasoningBanks={
             <td class="py-3 px-4 font-mono-code font-black">#${i + 1}</td>
             <td class="py-3 px-4">
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 border border-white/15">${buildCustomAvatarSVG(r.avatar || 'knight', `lb-${i}`)}</div>
+                <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 border border-white/15">${buildCustomAvatarSVG(validAvatar(r.avatar), `lb-${i}`)}</div>
                 <div>
                   <div class="flex flex-wrap items-center">
-                    <span>${escapeHTML(r.name || 'Scholar')}</span>
+                    <button class="text-left underline decoration-sky-400/50 underline-offset-4 hover:text-sky-300 font-bold" onclick="openPeerProfile(${i})">${escapeHTML(r.name || 'Scholar')}</button>
                     ${handleTag}
                     ${statusBadge}
                   </div>
@@ -4843,9 +4836,9 @@ const reasoningBanks={
             </td>
             <td class="py-3 px-4">
               <span class="font-bold" style="color:${rk.division.primary}">${rk.fullName}</span>
-              <span class="text-xs text-slate-400 ml-1">(Tier ${r.tier || 1})</span>${r.placementTier>1?`<div class="text-[10px] text-slate-400">Placed at ${getRankForTier(r.placementTier).fullName}</div>`:''}
+              <span class="text-xs text-slate-400 ml-1">(Tier ${r.tier || 1}${r.completed?' • Complete':''})</span>${r.placementTier>1?`<div class="text-[10px] text-slate-400">Placed at ${getRankForTier(r.placementTier).fullName}</div>`:''}
             </td>
-            <td class="py-3 px-4 font-mono-code">${r.acc==null?'—':r.acc+'%'}</td>
+            <td class="py-3 px-4 font-mono-code">${escapeHTML(companionName(r.pet))}</td>
             <td class="py-3 px-4 text-right font-mono-code font-extrabold">${(r.score || 0).toLocaleString()}</td>
           </tr>
         `;
@@ -5218,23 +5211,27 @@ function renderMastery(){const target=$('mastery-table');if(!target)return;const
 // Hosted account mode. No student saves are written to shared-device local storage.
 let account=null, revision=0, dirty=false, saving=null, conflict=false, accountLoading=false;
 const el=id=>document.getElementById(id);
-async function api(path,data){const r=await fetch('/api/'+path,{credentials:'same-origin',cache:'no-store',...(data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json','X-Arena-Request':'1'},body:JSON.stringify(data)})});let j;try{j=await r.json();}catch{throw Error('Account server unavailable.');}if(!r.ok){const e=Error(j.error||'Request failed.');e.status=r.status;throw e;}return j;}
+async function api(path,data){try{return await ArenaCloud.request(path,data);}catch(e){e.message=ArenaCloud.message(e);throw e;}}
 function cloudStatus(message,ok=false){el('cloud-sync-label').textContent=message;el('cloud-sync-dot').className='w-2 h-2 rounded-full '+(ok?'bg-emerald-400':'bg-amber-400');el('account-status').textContent=message;}
 function saveState(){if(!account||account.role!=='student'||accountLoading)return;dirty=true;cloudStatus('Saving…');if(!conflict)flushCloud();}
 async function flushCloud(){if(saving)return saving;if(!account||account.role!=='student'||conflict)return;const who=account.handle;saving=(async()=>{while(dirty&&account?.handle===who&&!conflict){dirty=false;try{const r=await api('save',{revision,save:state});revision=r.revision;el('cloud-error').classList.add('hidden');cloudStatus('Cloud saved',true);}catch(e){dirty=true;conflict=e.status===409;cloudStatus(conflict?'Save conflict — reload required':'Not saved — retry');el('cloud-error').textContent=e.message;el('cloud-error').classList.remove('hidden');if(conflict)el('reload-cloud').classList.remove('hidden');break;}}})();try{await saving;}finally{saving=null;}}
 window.syncProgressToCloud=async()=>{if(!account)return openAccount();if(account.role==='student'){dirty=true;await flushCloud();showToast(dirty?'⚠':'✓',dirty?'Progress has not yet synced.':'Progress saved to your account.');}};
-function openAccount(){el('account-overlay').classList.remove('hidden');isModalOpen=true;el('account-login').classList.toggle('hidden',!!account);el('account-signed').classList.toggle('hidden',!account);el('account-who').textContent=account?`Signed in as ${account.name} (${account.handle})`:'';el('account-close').classList.toggle('hidden',!account);el('account-error').textContent='';}
+function openAccount(){el('google-enrolment').classList.add('hidden');el('account-overlay').classList.remove('hidden');isModalOpen=true;el('account-login').classList.toggle('hidden',!!account);el('account-signed').classList.toggle('hidden',!account);el('account-who').textContent=account?`Signed in as ${account.name}`:'';el('account-close').classList.toggle('hidden',!account);el('account-error').textContent='';}
 function closeAccount(){if(!account)return;el('account-overlay').classList.add('hidden');isModalOpen=false;}
-function setAccountMode(register){el('register-fields').classList.toggle('hidden',!register);el('account-form').dataset.mode=register?'register':'login';el('account-submit').textContent=register?'Create account':'Sign in';el('account-mode').textContent=register?'Already registered? Sign in':'New scholar? Create account';el('account-error').textContent='';}
-async function activateAccount(a){$('placement-modal').classList.add('hidden');accountLoading=true;account=a;revision=a.revision;dirty=false;conflict=false;liveCloudLeaderboard=[];activeCloudUid=a.handle;el('reload-cloud').classList.add('hidden');el('cloud-error').classList.add('hidden');el('account-password').value='';el('account-code').value='';state=a.save?validateSave(a.save):freshState();const needsInitialSave=!a.save||(!state.completed&&state.questionSeed===null);state.playerName=a.name;state.accountHandle=a.handle;el('tab-teacher').classList.toggle('hidden',a.role!=='teacher');el('main-workspace').classList.remove('hidden');el('main-header').classList.remove('hidden');closeAccount();applyWebsiteSkin(state.equippedSkin);if(a.role==='teacher'){el('tab-arena').classList.add('hidden');el('tab-vault').classList.add('hidden');el('tab-store').classList.add('hidden');el('tab-mastery').classList.add('hidden');switchTab('teacher');}else{for(const id of ['tab-arena','tab-vault','tab-store','tab-mastery'])el(id).classList.remove('hidden');switchTab('arena');loadNextChallenge();}accountLoading=false;updatePlacementOffer();if(state.diagnostic?.status==='active'&&a.role==='student')renderPlacement();cloudStatus('Cloud connected',true);if(a.role==='student'&&needsInitialSave)saveState();}
-async function submitAccount(e){e.preventDefault();const b=el('account-submit');b.disabled=true;el('account-error').textContent='';try{const mode=el('account-form').dataset.mode||'login';const a=await api(mode,{handle:el('account-handle').value,password:el('account-password').value,name:el('account-name').value,code:el('account-code').value});await activateAccount(a);}catch(e){el('account-error').textContent=e.message;}finally{b.disabled=false;}}
-async function signOut(){if(!account)return;await flushCloud();if(dirty&&!confirm('Some changes are not saved to the server. Sign out and discard them?'))return;try{await api('logout',{});}catch(e){el('account-error').textContent=e.message;return;}account=null;dirty=false;conflict=false;state=freshState();liveCloudLeaderboard=[];clearInterval(timerInterval);el('main-workspace').classList.add('hidden');el('main-header').classList.add('hidden');el('account-handle').value='';setAccountMode(false);openAccount();}
-async function reloadCloud(){if(!confirm('Discard unsaved changes and load the latest server save?'))return;try{await activateAccount(await api('session'));}catch(e){showToast('⚠',e.message);}}
-async function refreshLeaderboard(){if(!account)return;try{const r=await api('leaderboard');liveCloudLeaderboard=r.rows;if(activeTab==='leaderboard')renderLeaderboard();}catch(e){el('cloud-error').textContent=e.message;el('cloud-error').classList.remove('hidden');}}
+function setAccountMode(register){el('register-fields').classList.toggle('hidden',!register);el('account-form').dataset.mode=register?'register':'login';el('account-password').autocomplete=register?'new-password':'current-password';el('account-submit').textContent=register?'Create account':'Sign in';el('account-mode').textContent=register?'Already registered? Sign in':'New scholar? Create account';el('account-error').textContent='';}
+async function activateAccount(a){if(a.needsEnrollment){el('account-login').classList.add('hidden');el('account-signed').classList.add('hidden');el('google-enrolment').classList.remove('hidden');el('account-error').textContent='';return;}el('google-enrolment').classList.add('hidden');el('google-code').value='';el('google-nickname').value='';$('placement-modal').classList.add('hidden');ArenaCloud.stop();accountLoading=true;account=a;revision=a.revision;dirty=false;conflict=false;liveCloudLeaderboard=[];activeCloudUid=a.handle;el('reload-cloud').classList.add('hidden');el('cloud-error').classList.add('hidden');el('account-password').value='';el('account-code').value='';state=a.save?validateSave(a.save):freshState();const needsInitialSave=!a.save||(!state.completed&&state.questionSeed===null);state.playerName=a.name;state.accountHandle=a.handle;el('tab-teacher').classList.toggle('hidden',a.role!=='teacher');el('main-workspace').classList.remove('hidden');el('main-header').classList.remove('hidden');closeAccount();applyWebsiteSkin(state.equippedSkin);if(a.role==='teacher'){el('tab-arena').classList.add('hidden');el('tab-vault').classList.add('hidden');el('tab-store').classList.add('hidden');el('tab-mastery').classList.add('hidden');switchTab('teacher');}else{for(const id of ['tab-arena','tab-vault','tab-store','tab-mastery'])el(id).classList.remove('hidden');switchTab('arena');loadNextChallenge();}accountLoading=false;updatePlacementOffer();if(state.diagnostic?.status==='active'&&a.role==='student')renderPlacement();cloudStatus('Cloud connected',true);if(a.role==='student'&&needsInitialSave)saveState();}
+let googleBusy=false;
+async function submitGoogle(){if(googleBusy||el('account-submit').disabled)return;googleBusy=true;const b=el('google-signin');b.disabled=true;el('account-submit').disabled=true;el('account-error').textContent='';try{await activateAccount(await api('google'));}catch(e){el('account-error').textContent=e.message;}finally{googleBusy=false;b.disabled=false;el('account-submit').disabled=false;}}
+async function submitGoogleEnrolment(e){e.preventDefault();if(googleBusy)return;googleBusy=true;const b=el('google-enrol-submit');b.disabled=true;el('google-cancel').disabled=true;el('account-error').textContent='';try{await activateAccount(await api('google-enrol',{name:el('google-nickname').value,code:el('google-code').value}));}catch(e){el('account-error').textContent=e.message;}finally{googleBusy=false;b.disabled=false;el('google-cancel').disabled=false;}}
+async function cancelGoogleEnrolment(){if(googleBusy)return;try{await api('logout');el('google-code').value='';el('google-nickname').value='';openAccount();}catch(e){el('account-error').textContent=e.message;}}
+async function submitAccount(e){e.preventDefault();if(googleBusy)return;const b=el('account-submit');b.disabled=true;el('account-error').textContent='';try{const mode=el('account-form').dataset.mode||'login';const a=await api(mode,{handle:el('account-handle').value,password:el('account-password').value,name:el('account-name').value,code:el('account-code').value});await activateAccount(a);}catch(e){el('account-error').textContent=e.message;}finally{b.disabled=false;}}
+async function signOut(){if(!account)return;await flushCloud();if(dirty&&!confirm('Some changes are not saved to the server. Sign out and discard them?'))return;try{await api('logout',{});}catch(e){el('account-error').textContent=e.message;return;}account=null;dirty=false;conflict=false;state=freshState();liveCloudLeaderboard=[];currentQuestion=null;autoAdvanceTimeout=null;clearInterval(timerInterval);for(const id of ['placement-modal','trophy-modal','profile-modal','peer-profile-modal'])$(id).classList.add('hidden');el('main-workspace').classList.add('hidden');el('main-header').classList.add('hidden');el('account-handle').value='';setAccountMode(false);openAccount();}
+async function reloadCloud(){if(saving)await saving;if(!confirm('Discard unsaved changes and load the latest server save?'))return;try{await activateAccount(await api('session'));}catch(e){showToast('⚠',e.message);}}
+async function refreshLeaderboard(){if(!account)return;try{await ArenaCloud.listen(rows=>{if(account&&activeTab==='leaderboard'){liveCloudLeaderboard=rows;renderLeaderboard();}},e=>{el('cloud-error').textContent=ArenaCloud.message(e);el('cloud-error').classList.remove('hidden');});}catch(e){el('cloud-error').textContent=ArenaCloud.message(e);el('cloud-error').classList.remove('hidden');}}
 async function renderTeacher(){const target=el('teacher-table');target.textContent='Loading class…';try{const r=await api('teacher');if(!r.rows.length){target.textContent='No students have registered yet.';return;}target.innerHTML=r.rows.map(s=>`<details class="skin-card-alt rounded-xl p-3"><summary class="cursor-pointer font-bold">${escapeHTML(s.name)} • Tier ${s.tier}${s.completed?' (complete)':''} • ${s.acc===null?'No attempts':s.acc+'% accuracy'}</summary><p class="text-xs text-slate-400 mt-2">Handle: ${escapeHTML(s.handle)} · ${s.attempts} responses · × ${s.operations?.mult?.correct??0}/${s.operations?.mult?.attempts??0} · ÷ ${s.operations?.div?.correct??0}/${s.operations?.div?.attempts??0} · Entry tier ${s.placementTier||1} · ${s.diagnostic?.blocks?.map(b=>`${['Iron','Bronze','Silver'][b.division]} ${b.correct}/10 (${b.passed?'pass':'not passed'})`).join('; ')||'No completed diagnostic'} · ${s.updated?new Date(s.updated*1000).toLocaleString():'Not yet saved'}</p><div class="overflow-x-auto mt-2"><table class="w-full text-xs"><thead><tr><th>Topic</th><th>Correct</th><th>Independent</th><th>Hints</th><th>Retrieval</th><th>Errors</th></tr></thead><tbody>${Object.entries(s.mastery).map(([t,m])=>`<tr class="border-t border-white/10"><td class="p-2">${escapeHTML(CURRICULUM[Number(t)-1]?.title||t)}</td><td>${m.correct}/${m.attempts}</td><td>${m.independent}</td><td>${m.hints}</td><td>${m.reviewCorrect}/${m.reviewAttempts}</td><td>${m.errors}</td></tr>`).join('')}</tbody></table></div></details>`).join('');}catch(e){target.textContent=e.message;}}
 window.addEventListener('beforeunload',e=>{if(dirty||saving){e.preventDefault();e.returnValue='';}});
-window.addEventListener('online',()=>{if(dirty)flushCloud();});setInterval(()=>{if(dirty&&!conflict)flushCloud();if(account&&activeTab==='leaderboard')refreshLeaderboard();},15000);
-async function startHosted(){el('main-header').classList.add('hidden');el('main-workspace').classList.add('hidden');setAccountMode(false);openAccount();try{await activateAccount(await api('session'));}catch(e){if(e.status!==401)el('account-error').textContent='Cannot connect to the account server. Open the hosted game URL, not the HTML file.';}}
+window.addEventListener('online',()=>{if(dirty)flushCloud();});setInterval(()=>{if(dirty&&!conflict)flushCloud();},15000);
+async function startHosted(){el('main-header').classList.add('hidden');el('main-workspace').classList.add('hidden');setAccountMode(false);openAccount();try{await activateAccount(await api('session'));}catch(e){if(e.status!==401)el('account-error').textContent=ArenaCloud.message(e);}}
 
 function openAccountProfile(){if(account?.role!=='student')return;const n=prompt('Class nickname (20 characters maximum)',state.playerName);if(n&&n.trim()){state.playerName=n.trim().slice(0,20);account.name=state.playerName;saveState();updateProgressionUI();openAccount();}}
 // Placement evidence is separate from earned mastery and score.
@@ -5248,6 +5245,15 @@ function skipPlacementQuestion(){if(state.diagnostic?.status==='active')recordPl
 function recordPlacement(q,correct){const d=state.diagnostic;d.answers.push({t:q.t,correct});rememberQuestion(q);if(d.answers.length===10){const correctCount=d.answers.filter(x=>x.correct).length,passed=correctCount>=8&&Array.from({length:5},(_,i)=>d.passed*5+i+1).every(t=>d.answers.some(x=>x.t===t&&x.correct));d.blocks??=[];d.blocks.push({division:d.passed,correct:correctCount,passed,topics:d.answers.slice()});if(passed){d.passed++;d.answers=[];if(d.passed===3){finishPlacement();return;}}else{finishPlacement();return;}}saveState();renderPlacement();}
 function finishPlacement(){const d=state.diagnostic;if(!d||d.status!=='active')return;d.status='done';state.placementTier=1+d.passed*5;state.currentTier=state.peakTier=state.placementTier;state.questionSeed=null;state.startedAt=null;state.hintUsed=false;state.practiceCount=0;state.stage='practice';for(let t=1;t<state.placementTier;t++){const m=mastery(t);m.due=0;} $('placement-modal').classList.add('hidden');isModalOpen=false;autoAdvanceTimeout=null;updatePlacementOffer();saveState();loadNextChallenge();showToast('✓',`Placement complete: ${getRankForTier(state.currentTier).fullName}. No coins awarded; skipped topics will be revisited.`);}
 function stopPlacement(){if(confirm('End the diagnostic? Your starting rank will be based only on completed passing blocks. You cannot restart the diagnostic.'))finishPlacement();}
+
+
+let peerRows=[], peerReturnFocus=null;
+function validAvatar(id){return CUSTOM_AVATARS.some(x=>x.id===id)?id:DEFAULT_STATE.equippedAvatar;}
+function validPet(id){return COMPANIONS.some(x=>x.id===id)?id:'none';}
+function companionName(id){return COMPANIONS.find(x=>x.id===validPet(id))?.name||'None';}
+function openPeerProfile(i){const p=peerRows[i];if(!account||!p)return;peerReturnFocus=document.activeElement;const r=getRankForTier(p.tier),entry=p.placementTier||1,end=p.completed?51:p.tier;const segments=d=>Math.max(0,Math.min(d*5+6,end)-Math.max(d*5+1,entry));$('peer-name').textContent=p.name;$('peer-rank').textContent=r.fullName+(p.completed?' • Complete':'');$('peer-score').textContent=`${p.score.toLocaleString()} Arena score${entry>1?' • Placed at '+getRankForTier(entry).fullName:''}`;$('peer-avatar').innerHTML=buildCustomAvatarSVG(validAvatar(p.avatar),'peer-avatar-svg');$('peer-emblem').innerHTML=buildRankedEmblemSVG(r.divIndex,segments(r.divIndex),'peer-emblem-svg');$('peer-earned').textContent=`${segments(r.divIndex)} / 5 earned segments`;$('peer-pet').innerHTML=validPet(p.pet)==='none'?'<div class="h-full flex items-center justify-center text-slate-400 text-xs">Not equipped</div>':buildCompanionSVG(validPet(p.pet),'peer-pet-svg');$('peer-pet-name').textContent=companionName(p.pet);$('peer-vault').innerHTML=DIVISIONS.map((d,i)=>`<div class="text-center"><div class="w-10 h-10 mx-auto">${buildRankedEmblemSVG(i,segments(i),'peer-vault-'+i)}</div><p class="text-[9px] text-slate-400">${escapeHTML(d.name)}</p><p class="text-[9px]">${segments(i)}/5</p></div>`).join('');$('peer-profile-modal').classList.remove('hidden');isModalOpen=true;$('peer-close').focus();}
+function closePeerProfile(){$('peer-profile-modal').classList.add('hidden');isModalOpen=false;peerReturnFocus?.focus();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('peer-profile-modal').classList.contains('hidden'))closePeerProfile();});
 
 window.addEventListener('DOMContentLoaded',startHosted);
   </script>
